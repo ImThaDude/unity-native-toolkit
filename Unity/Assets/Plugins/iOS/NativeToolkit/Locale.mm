@@ -11,6 +11,7 @@
 
 double latitude;
 double longitude;
+double horizontalAccuracy;
 
 @implementation Locale
 
@@ -22,6 +23,8 @@ CLLocationManager *locationManager;
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+
+    NSLog(@"[LocationAPI]accNear:%f accBest:%f", kCLLocationAccuracyNearestTenMeters, kCLLocationAccuracyBest);
     
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
         [locationManager requestWhenInUseAuthorization];
@@ -36,8 +39,9 @@ CLLocationManager *locationManager;
     CLLocation *location = [locations lastObject];
     latitude = location.coordinate.latitude;
     longitude = location.coordinate.longitude;
+    horizontalAccuracy = location.horizontalAccuracy;
     
-    //NSLog(@"lat:%f long:%f", latitude, longitude);
+    NSLog(@"[LocationAPI]lat:%f long:%f acc:%f", latitude, longitude, horizontalAccuracy);
 }
 
 @end
@@ -59,6 +63,11 @@ extern "C"
     void startLocation()
     {
         if(localeDelegate == NULL) localeDelegate = [[Locale alloc] init];
+    }
+
+    double getHorizontalAccuracy() 
+    {
+        return horizontalAccuracy; 
     }
     
     double getLongitude()

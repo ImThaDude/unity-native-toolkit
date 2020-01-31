@@ -75,6 +75,9 @@ public class NativeToolkit : MonoBehaviour {
     [DllImport("__Internal")]
     private static extern double getLatitude();
 
+    [DllImport("__Internal")]
+    private static extern double getHorizontalAccuracy();
+
 #elif UNITY_ANDROID
 
 	static AndroidJavaClass obj;
@@ -528,7 +531,35 @@ public class NativeToolkit : MonoBehaviour {
         return true;
 	}
 
-	public static double GetLongitude()
+    public static double GetHorizontalAccuracy()
+    {
+        Instance.Awake();
+
+        if (!Input.location.isEnabledByUser)
+        {
+            return 0;
+        }
+
+#if UNITY_IOS
+
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            return getHorizontalAccuracy();
+        }
+
+#elif UNITY_ANDROID
+
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            return obj.CallStatic<double>("getHorizontalAccuracy");
+        }
+        
+#endif
+
+        return 0;
+    }
+
+    public static double GetLongitude()
 	{
         Instance.Awake();
 
