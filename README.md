@@ -11,6 +11,9 @@ Easily integrate native iOS & Android functionality into Unity projects.
 * Local notifications
 * GPS data (lat/long as double)
 
+### ImThaDude Additions:
+* GPS data (Horizontal Accuracy)
+
 ## Usage
 Add the files contained in Unity/Assets/ to your project then call the required static function from your code. For instance:
 ```csharp
