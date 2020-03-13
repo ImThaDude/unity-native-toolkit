@@ -24,7 +24,7 @@ CLLocationManager *locationManager;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
-    NSLog(@"[LocationAPI]accNear:%f accBest:%f", kCLLocationAccuracyNearestTenMeters, kCLLocationAccuracyBest);
+    //NSLog(@"[LocationAPI]accNear:%f accBest:%f", kCLLocationAccuracyNearestTenMeters, kCLLocationAccuracyBest);
     
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
         [locationManager requestWhenInUseAuthorization];
@@ -41,7 +41,7 @@ CLLocationManager *locationManager;
     longitude = location.coordinate.longitude;
     horizontalAccuracy = location.horizontalAccuracy;
     
-    NSLog(@"[LocationAPI]lat:%f long:%f acc:%f", latitude, longitude, horizontalAccuracy);
+    //NSLog(@"[LocationAPI]lat:%f long:%f acc:%f", latitude, longitude, horizontalAccuracy);
 }
 
 @end
