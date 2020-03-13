@@ -551,7 +551,7 @@ public class NativeToolkit : MonoBehaviour {
 
         if(Application.platform == RuntimePlatform.Android)
         {
-            return obj.CallStatic<double>("getHorizontalAccuracy");
+            return (double) obj.CallStatic<float>("getAccuracy");
         }
         
 #endif

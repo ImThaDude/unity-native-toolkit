@@ -175,6 +175,11 @@ public class Main extends UnityPlayerActivity {
 	{
 		return Location.LastLocation.getLongitude();
 	}
+
+	public static float getAccuracy()
+	{
+		return Location.LastLocation.getAccuracy();
+	}
 	
 	public static void scheduleLocalNotification(String title, String message, int id, int delay, String sound, 
 			boolean vibrate, String smallIcon, String largeIcon)
